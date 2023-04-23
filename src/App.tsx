@@ -21,8 +21,8 @@ const NotePage = lazy(() =>
 function App() {
   return (
     <Routes>
+      <Route path="/login" element={<LoginPage />} />
       <Route element={<MainLayout />}>
-        <Route path="/login" element={<LoginPage />} />
         <Route path="/" element={<NotePage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
