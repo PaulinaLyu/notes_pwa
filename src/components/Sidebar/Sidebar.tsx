@@ -1,17 +1,15 @@
 import React from "react";
 import {
-  Box,
   Divider,
   Drawer,
   List,
   ListItem,
   ListItemButton,
   ListItemText,
-  Toolbar,
-  Typography,
 } from "@mui/material";
 import { notes } from "../../data/notes";
 import { AuthStatus } from "../AuthStatus";
+import { useNote } from "../../provider/noteProvider";
 
 interface SidebarProps {
   drawerWidth: number;
@@ -19,6 +17,7 @@ interface SidebarProps {
 
 export const Sidebar = ({ drawerWidth }: SidebarProps) => {
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const currentNote = useNote();
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -31,9 +30,11 @@ export const Sidebar = ({ drawerWidth }: SidebarProps) => {
       <List>
         {notes.map((note) => (
           <ListItem key={note.id} disablePadding>
-            <ListItemButton>
+            <ListItemButton
+              onClick={() => currentNote && currentNote.setNote(note.id)}
+            >
               <ListItemText
-                primary={note.titel}
+                primary={note.title}
                 secondary={<React.Fragment>{note.body}</React.Fragment>}
               />
             </ListItemButton>
@@ -43,7 +44,8 @@ export const Sidebar = ({ drawerWidth }: SidebarProps) => {
     </div>
   );
 
-  const container = window !== undefined ? () => window.document.body : undefined;
+  const container =
+    window !== undefined ? () => window.document.body : undefined;
 
   return (
     <>
