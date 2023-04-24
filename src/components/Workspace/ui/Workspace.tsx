@@ -6,27 +6,23 @@ import { NoteInterface } from "../../../data/dataTypes";
 import { ConfirmModal } from "../../ConfirmModal";
 
 export const Workspace = () => {
-  const currentNote = useNote();
+  const notesContext = useNote();
   const [data, setData] = useState<NoteInterface | null>(null);
   const [isDeleteModal, setIsDeleteModal] = useState(false);
 
   useEffect(() => {
-    if (currentNote) {
+    if (notesContext) {
       const filteredNote = notes.filter(
-        (item) => item.id === currentNote?.note
+        (item) => item.id === notesContext?.currentNoteId
       )[0];
       setData(filteredNote);
     }
-  }, [currentNote]);
+  }, [notesContext?.currentNoteId]);
 
   const handleDelete = () => {
-    if (currentNote) {
-      console.log(currentNote?.note);
-      // const filteredNotes = notes.filter(
-      //   (item) => item.id === currentNote?.note
-      // );
-      // notes = filteredNotes
-      // setData(filteredNote);
+    if (notesContext) {
+      notesContext.deleteNote(notesContext?.currentNoteId);
+      setIsDeleteModal(false);
     }
   };
 

@@ -7,7 +7,6 @@ import {
   ListItemButton,
   ListItemText,
 } from "@mui/material";
-import { notes } from "../../data/notes";
 import { AuthStatus } from "../AuthStatus";
 import { useNote } from "../../provider/noteProvider";
 
@@ -16,6 +15,7 @@ interface SidebarProps {
 }
 
 export const Sidebar = ({ drawerWidth }: SidebarProps) => {
+  const notesContext = useNote();
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const currentNote = useNote();
 
@@ -28,10 +28,12 @@ export const Sidebar = ({ drawerWidth }: SidebarProps) => {
       <AuthStatus />
       <Divider />
       <List>
-        {notes.map((note) => (
+        {notesContext?.notesList.map((note) => (
           <ListItem key={note.id} disablePadding>
             <ListItemButton
-              onClick={() => currentNote && currentNote.setNote(note.id)}
+              onClick={() =>
+                currentNote && currentNote.setCurrentNoteId(note.id)
+              }
             >
               <ListItemText
                 primary={note.title}
