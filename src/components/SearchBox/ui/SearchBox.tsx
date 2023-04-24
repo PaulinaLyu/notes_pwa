@@ -1,9 +1,9 @@
 import { TextField } from "@mui/material";
-import { useNote } from "../../provider/noteProvider";
-import { useDebounce } from "../../hooks/useDebounce";
+import { useNote } from "../../../provider/noteProvider";
+import { useDebounce } from "../../../hooks/useDebounce";
 import { useState } from "react";
 
-const SearchBox = () => {
+export const SearchBox = () => {
   const [searchVal, setSearchVal] = useState("");
   const notesContext = useNote();
 
@@ -28,5 +28,3 @@ const SearchBox = () => {
     />
   );
 };
-
-export default SearchBox;

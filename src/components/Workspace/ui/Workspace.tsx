@@ -4,11 +4,13 @@ import { useEffect, useState } from "react";
 import { notes } from "../../../data/notes";
 import { NoteInterface } from "../../../data/dataTypes";
 import { ConfirmModal } from "../../ConfirmModal";
+import { WorkspaceForm } from "./WorkspaceForm";
 
 export const Workspace = () => {
   const notesContext = useNote();
   const [data, setData] = useState<NoteInterface | null>(null);
   const [isDeleteModal, setIsDeleteModal] = useState(false);
+  const [isEdit, setIsEdit] = useState(false);
 
   useEffect(() => {
     if (notesContext) {
@@ -48,13 +50,20 @@ export const Workspace = () => {
             <Button onClick={() => setIsDeleteModal(true)} variant="outlined">
               Удалить
             </Button>
-            <Button variant="contained">Редактировать</Button>
+            <Button onClick={() => setIsEdit(!isEdit)} variant="contained">
+              {isEdit ? "Назад" : "Редактировать"}
+            </Button>
           </Stack>
-
-          <Typography variant="h4" component="h4">
-            {data.title}
-          </Typography>
-          <Typography paragraph>{data.body}</Typography>
+          {isEdit ? (
+            <WorkspaceForm data={data} />
+          ) : (
+            <>
+              <Typography variant="h4" component="h4">
+                {data.title}
+              </Typography>
+              <Typography paragraph>{data.body}</Typography>
+            </>
+          )}
         </>
       ) : (
         <>

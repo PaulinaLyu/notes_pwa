@@ -8,6 +8,11 @@ interface NoteContextProps {
   setCurrentNoteId: (value: number) => void;
   deleteNote: (id: number) => void;
   setSearchNotes: (value: string) => void;
+  changeNote: (
+    inputName: keyof NoteInterface,
+    value: string,
+    noteId: number
+  ) => void;
 }
 
 interface NoteProviderProps {
@@ -24,10 +29,19 @@ export function NoteProvider({ children }: NoteProviderProps) {
   const [currentNoteId, setCurrentNoteId] = useState<number>(0);
   const [notesList, setNotesList] = useState<NoteInterface[]>(notes);
 
-  // const changeNote = (body, title) => {
-  //  const changedNote = notesList.filter((item) => item.id === currentNoteId);
+  const changeNote = (
+    inputName: keyof NoteInterface,
+    value: string,
+    noteId: number
+  ) => {
+    let findNote: any = notesList.find((item) => item.id === noteId);
+    if (findNote) {
+      findNote[inputName] = value;
+    }
+    const filteredNote = notesList.filter((item) => item.id !== noteId);
+    setNotesList([...filteredNote, findNote]);
+  };
 
-  // };
   const deleteNote = (id: number) => {
     const filteredNotes = notesList.filter((item) => item.id !== id);
     setNotesList(filteredNotes);
@@ -52,6 +66,7 @@ export function NoteProvider({ children }: NoteProviderProps) {
     deleteNote,
     notesList,
     setSearchNotes,
+    changeNote,
   };
 
   return <NoteContext.Provider value={value}>{children}</NoteContext.Provider>;
