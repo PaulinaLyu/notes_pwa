@@ -19,7 +19,7 @@ export function AuthStatus() {
   }
 
   return (
-    <Stack direction="row" justifyContent="flex-end">
+    <Stack direction="row" justifyContent="flex-end" sx={{ mb: 2, mt: 2 }}>
       <Typography variant="h6" component="h6">
         {auth && auth.user}
       </Typography>{" "}

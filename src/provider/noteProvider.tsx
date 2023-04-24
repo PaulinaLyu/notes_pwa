@@ -4,10 +4,10 @@ import { notes } from "../data/notes";
 
 interface NoteContextProps {
   currentNoteId: number;
-  currentSearchList: NoteInterface[];
   notesList: NoteInterface[];
   setCurrentNoteId: (value: number) => void;
   deleteNote: (id: number) => void;
+  setSearchNotes: (value: string) => void;
 }
 
 interface NoteProviderProps {
@@ -23,9 +23,6 @@ export function useNote() {
 export function NoteProvider({ children }: NoteProviderProps) {
   const [currentNoteId, setCurrentNoteId] = useState<number>(0);
   const [notesList, setNotesList] = useState<NoteInterface[]>(notes);
-  const [currentSearchList, setCurrentSearchList] = useState<NoteInterface[]>(
-    []
-  );
 
   // const changeNote = (body, title) => {
   //  const changedNote = notesList.filter((item) => item.id === currentNoteId);
@@ -39,12 +36,22 @@ export function NoteProvider({ children }: NoteProviderProps) {
     }
   };
 
+  const setSearchNotes = (value: string) => {
+    const filteredNotes = notesList.filter((item) =>
+      item.title.includes(value)
+    );
+    setNotesList(filteredNotes);
+    if (value.length === 0) {
+      setNotesList(notes);
+    }
+  };
+
   const value = {
     currentNoteId,
     setCurrentNoteId,
     deleteNote,
     notesList,
-    currentSearchList,
+    setSearchNotes,
   };
 
   return <NoteContext.Provider value={value}>{children}</NoteContext.Provider>;

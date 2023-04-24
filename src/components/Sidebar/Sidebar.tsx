@@ -9,6 +9,7 @@ import {
 } from "@mui/material";
 import { AuthStatus } from "../AuthStatus";
 import { useNote } from "../../provider/noteProvider";
+import SearchBox from "../SearchBox/SearchBox";
 
 interface SidebarProps {
   drawerWidth: number;
@@ -26,7 +27,7 @@ export const Sidebar = ({ drawerWidth }: SidebarProps) => {
   const drawer = (
     <div>
       <AuthStatus />
-      <Divider />
+      <SearchBox />
       <List>
         {notesContext?.notesList.map((note) => (
           <ListItem key={note.id} disablePadding>

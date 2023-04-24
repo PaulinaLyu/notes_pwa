@@ -1,4 +1,10 @@
-import { useRef, MutableRefObject, FormEventHandler, ChangeEventHandler, useState } from "react";
+import {
+  useRef,
+  MutableRefObject,
+  FormEventHandler,
+  ChangeEventHandler,
+  useState,
+} from "react";
 import {
   Alert,
   Button,
@@ -39,16 +45,21 @@ export const SignUpForm = ({ setIsLogin }: SignUpFormProps) => {
   const formRef = useRef() as MutableRefObject<HTMLFormElement>;
   const signUpInputs = useRef(initialState);
 
-  const handleClickShowPasswordRepeat = () => setShowPasswordRepeat((show) => !show);
+  const handleClickShowPasswordRepeat = () =>
+    setShowPasswordRepeat((show) => !show);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
-  const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleMouseDownPassword = (
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
     event.preventDefault();
   };
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
-    const currentUser = users.filter((user) => user.login === signUpInputs.current.login);
+    const currentUser = users.filter(
+      (user) => user.login === signUpInputs.current.login
+    );
     if (
       signUpInputs.current.password &&
       signUpInputs.current.repeatPass &&
@@ -81,7 +92,10 @@ export const SignUpForm = ({ setIsLogin }: SignUpFormProps) => {
       ...signUpInputs.current,
       [event.target.name]: event.target.value,
     };
-    if (event.target.name === "password" || event.target.name === "passwordRepeat") {
+    if (
+      event.target.name === "password" ||
+      event.target.name === "passwordRepeat"
+    ) {
       validatePass();
     }
   };
@@ -119,6 +133,7 @@ export const SignUpForm = ({ setIsLogin }: SignUpFormProps) => {
           id="outlined-basic"
           label="Логин"
           variant="outlined"
+          placeholder="Логин"
         />
         <TextField
           margin="normal"
@@ -142,6 +157,7 @@ export const SignUpForm = ({ setIsLogin }: SignUpFormProps) => {
           id="outlined-basic"
           name="password"
           label="Пароль"
+          placeholder="Пароль"
           variant="outlined"
         />
         <TextField
@@ -166,14 +182,23 @@ export const SignUpForm = ({ setIsLogin }: SignUpFormProps) => {
           id="outlined-basic"
           name="repeatPass"
           label="Повторить пароль"
+          placeholder="Повторить пароль"
           variant="outlined"
         />
-        <TextField margin="dense" name="name" id="outlined-basic" label="Имя" variant="outlined" />
+        <TextField
+          margin="dense"
+          name="name"
+          id="outlined-basic"
+          label="Имя"
+          placeholder="Имя"
+          variant="outlined"
+        />
         <TextField
           margin="dense"
           name="surname"
           id="outlined-basic"
           label="Фамилия"
+          placeholder="Фамилия"
           variant="outlined"
         />
         {alert.length > 0 && <Alert severity="error">{alert}</Alert>}

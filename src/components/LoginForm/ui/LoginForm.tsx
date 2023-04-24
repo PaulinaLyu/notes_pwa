@@ -1,4 +1,10 @@
-import { useRef, MutableRefObject, FormEventHandler, ChangeEventHandler, useState } from "react";
+import {
+  useRef,
+  MutableRefObject,
+  FormEventHandler,
+  ChangeEventHandler,
+  useState,
+} from "react";
 import {
   Alert,
   Button,
@@ -35,13 +41,17 @@ export const LoginForm = ({ setIsLogin }: LoginFormProps) => {
   const formRef = useRef() as MutableRefObject<HTMLFormElement>;
   const signInInputs = useRef(initialState);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
-  const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleMouseDownPassword = (
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
     event.preventDefault();
   };
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
-    const currentUser = users.filter((user) => user.login === signInInputs.current.login)[0];
+    const currentUser = users.filter(
+      (user) => user.login === signInInputs.current.login
+    )[0];
     if (currentUser && currentUser.password === signInInputs.current.password) {
       auth &&
         auth.signIn(signInInputs.current.login, () => {
@@ -106,6 +116,7 @@ export const LoginForm = ({ setIsLogin }: LoginFormProps) => {
           id="outlined-basic"
           name="password"
           label="Пароль"
+          placeholder="Пароль"
           variant="outlined"
         />
         {alert.length > 0 && <Alert severity="error">{alert}</Alert>}
