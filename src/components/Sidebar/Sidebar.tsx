@@ -1,6 +1,7 @@
 import React from "react";
 import {
   Box,
+  Divider,
   Drawer,
   List,
   ListItem,
@@ -10,6 +11,7 @@ import {
   Typography,
 } from "@mui/material";
 import { notes } from "../../data/notes";
+import { AuthStatus } from "../AuthStatus";
 
 const drawerWidth = 300;
 
@@ -22,6 +24,8 @@ export const Sidebar = () => {
 
   const drawer = (
     <div>
+      <AuthStatus />
+      <Divider />
       <List>
         {notes.map((note) => (
           <ListItem key={note.id} disablePadding>
@@ -72,7 +76,7 @@ export const Sidebar = () => {
           {drawer}
         </Drawer>
       </Box>
-      <Box
+      {/* <Box
         component="main"
         sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
       >
@@ -99,7 +103,7 @@ export const Sidebar = () => {
           nibh sit. Ornare aenean euismod elementum nisi quis eleifend. Commodo viverra maecenas
           accumsan lacus vel facilisis. Nulla posuere sollicitudin aliquam ultrices sagittis orci a.
         </Typography>
-      </Box>
+      </Box> */}
     </Box>
   );
 };

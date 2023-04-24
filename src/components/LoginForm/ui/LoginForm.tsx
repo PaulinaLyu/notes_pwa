@@ -1,15 +1,30 @@
 import { useRef, MutableRefObject, FormEventHandler, ChangeEventHandler, useState } from "react";
-import { Alert, Button, Stack, TextField, Typography } from "@mui/material";
+import {
+  Alert,
+  Button,
+  IconButton,
+  InputAdornment,
+  Stack,
+  TextField,
+  Typography,
+} from "@mui/material";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../../provider/authProvider";
+import { VisibilityOff } from "@mui/icons-material";
+import { Visibility } from "@mui/icons-material";
 import "./loginForm.scss";
 import { users } from "../../../data/users";
 
-export const LoginForm = () => {
+interface LoginFormProps {
+  setIsLogin: (val: boolean) => void;
+}
+
+export const LoginForm = ({ setIsLogin }: LoginFormProps) => {
   const auth = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const [alert, setAlert] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const from = location.state?.from || "/";
 
@@ -19,6 +34,10 @@ export const LoginForm = () => {
   };
   const formRef = useRef() as MutableRefObject<HTMLFormElement>;
   const signInInputs = useRef(initialState);
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
+  const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+  };
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
@@ -68,10 +87,24 @@ export const LoginForm = () => {
         />
         <TextField
           margin="normal"
+          type={showPassword ? "text" : "password"}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={handleClickShowPassword}
+                  onMouseDown={handleMouseDownPassword}
+                  edge="end"
+                >
+                  {showPassword ? <VisibilityOff /> : <Visibility />}
+                </IconButton>
+              </InputAdornment>
+            ),
+          }}
           required
           id="outlined-basic"
           name="password"
-          placeholder="Пароль"
           label="Пароль"
           variant="outlined"
         />
@@ -81,7 +114,10 @@ export const LoginForm = () => {
           spacing={{ xs: 1, sm: 2, md: 4 }}
           justifyContent="flex-end"
         >
-          <Button type="reset" variant="outlined" onChange={handleReset}>
+          <Button variant="text" onClick={() => setIsLogin(false)}>
+            Нет профиля
+          </Button>
+          <Button type="reset" variant="outlined">
             Очистить форму
           </Button>
           <Button type="submit" variant="contained">

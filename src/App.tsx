@@ -1,6 +1,7 @@
 import { lazy } from "react";
 import { Route, Routes } from "react-router-dom";
 import MainLayout from "./layout/MainLayout";
+import PrivateOutlet from "./layout/PrivateLayout";
 
 const LoginPage = lazy(() =>
   import("./pages/LoginPage/ui/LoginPage").then((module) => ({
@@ -22,7 +23,7 @@ function App() {
   return (
     <Routes>
       <Route path="/login" element={<LoginPage />} />
-      <Route element={<MainLayout />}>
+      <Route element={<PrivateOutlet />}>
         <Route path="/" element={<NotePage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
