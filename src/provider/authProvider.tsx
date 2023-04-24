@@ -1,24 +1,25 @@
 import { createContext, useContext, ReactNode } from "react";
 import { useLocalStorage } from "../hooks/useLocalStorage";
+type TypeSignIn = (newUser: string, callBack: () => void) => void;
+type TypeSignOut = (callBack: () => void) => void;
 
-const AuthContext = createContext(null);
+interface AuthContextProps {
+  user: string | null;
+  signIn: TypeSignIn;
+  signOut: TypeSignOut;
+}
+interface AuthProviderProps {
+  children: ReactNode;
+}
+
+const AuthContext = createContext<AuthContextProps | null>(null);
 
 export function useAuth() {
   return useContext(AuthContext);
 }
 
-interface AuthProviderProps {
-  children: ReactNode;
-}
-
-type TypeSignIn = (newUser: string, callBack: () => void) => void;
-type TypeSignOut = (callBack: () => void) => void;
-
 export function AuthProvider({ children }: AuthProviderProps) {
-  const [user, { setItem, removeItem }] = useLocalStorage<string | null>(
-    "userName",
-    null
-  );
+  const [user, { setItem, removeItem }] = useLocalStorage<string | null>("userName", null);
 
   const signIn: TypeSignIn = (newUser, callBack) => {
     setItem(newUser);
@@ -30,7 +31,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
     callback();
   };
 
-  const value: any = {
+  const value = {
     user,
     signIn,
     signOut,
