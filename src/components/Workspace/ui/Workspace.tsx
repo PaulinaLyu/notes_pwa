@@ -5,9 +5,11 @@ import { notes } from "../../../data/notes";
 import { NoteInterface } from "../../../data/dataTypes";
 import { ConfirmModal } from "../../ConfirmModal";
 import { WorkspaceForm } from "./WorkspaceForm";
+import { useNotesList } from "../../../provider/notesListProvider";
 
 export const Workspace = () => {
   const notesContext = useNote();
+  const notesListContext = useNotesList();
   const [data, setData] = useState<NoteInterface | null>(null);
   const [isDeleteModal, setIsDeleteModal] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
@@ -22,8 +24,8 @@ export const Workspace = () => {
   }, [notesContext?.currentNoteId]);
 
   const handleDelete = () => {
-    if (notesContext) {
-      notesContext.deleteNote(notesContext?.currentNoteId);
+    if (notesListContext && notesContext) {
+      notesListContext.deleteNote(notesContext?.currentNoteId);
       setIsDeleteModal(false);
     }
   };

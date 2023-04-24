@@ -1,21 +1,21 @@
 import { Stack, TextField } from "@mui/material";
 import { NoteInterface } from "../../../data/dataTypes";
 import { useDebounce } from "../../../hooks/useDebounce";
-import { useNote } from "../../../provider/noteProvider";
 import { useEffect, useState } from "react";
+import { useNotesList } from "../../../provider/notesListProvider";
 
 interface WorkspaceProps {
   data: NoteInterface;
 }
 
 export const WorkspaceForm = ({ data }: WorkspaceProps) => {
-  const notesContext = useNote();
+  const notesListContext = useNotesList();
   const [titleVal, setTitleVal] = useState("");
   const [bodyVal, setBodyVal] = useState("");
 
   useDebounce(
     () => {
-      notesContext && notesContext.changeNote("title", titleVal, data.id);
+      notesListContext?.changeNote("title", titleVal, data.id);
     },
     200,
     [titleVal]
@@ -23,7 +23,7 @@ export const WorkspaceForm = ({ data }: WorkspaceProps) => {
 
   useDebounce(
     () => {
-      notesContext && notesContext.changeNote("body", bodyVal, data.id);
+      notesListContext?.changeNote("body", bodyVal, data.id);
     },
     200,
     [bodyVal]

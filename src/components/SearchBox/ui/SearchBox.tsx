@@ -1,11 +1,11 @@
 import { TextField } from "@mui/material";
-import { useNote } from "../../../provider/noteProvider";
 import { useDebounce } from "../../../hooks/useDebounce";
 import { useState } from "react";
+import { useNotesList } from "../../../provider/notesListProvider";
 
 export const SearchBox = () => {
   const [searchVal, setSearchVal] = useState("");
-  const notesContext = useNote();
+  const notesContext = useNotesList();
 
   useDebounce(
     () => {
