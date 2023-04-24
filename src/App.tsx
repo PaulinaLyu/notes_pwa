@@ -3,17 +3,17 @@ import { Route, Routes } from "react-router-dom";
 import MainLayout from "./layout/MainLayout";
 
 const LoginPage = lazy(() =>
-  import("./pages/LoginPage").then((module) => ({
+  import("./pages/LoginPage/ui/LoginPage").then((module) => ({
     default: module.LoginPage,
   }))
 );
 const NotFoundPage = lazy(() =>
-  import("./pages/NotFoundPage").then((module) => ({
+  import("./pages/NotFoundPage/ui/NotFoundPage").then((module) => ({
     default: module.NotFoundPage,
   }))
 );
 const NotePage = lazy(() =>
-  import("./pages/NotePage").then((module) => ({
+  import("./pages/NotePage/ui/NotePage").then((module) => ({
     default: module.NotePage,
   }))
 );

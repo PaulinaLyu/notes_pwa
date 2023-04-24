@@ -1,2 +1,1 @@
-import { NotePage } from "./NotePage";
-export { NotePage };
+export { NotePage } from "./ui/NotePage";
