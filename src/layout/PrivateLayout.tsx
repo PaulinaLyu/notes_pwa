@@ -7,14 +7,9 @@ const PrivateOutlet = () => {
   const auth = useAuth();
   const location = useLocation();
   return auth && auth.user ? (
-    <>
-      <Sidebar />
-      <div className="app-container">
-        <Suspense fallback={"...Loading"}>
-          <Outlet />
-        </Suspense>
-      </div>
-    </>
+    <Suspense fallback={"...Loading"}>
+      <Outlet />
+    </Suspense>
   ) : (
     <Navigate to="/login" state={{ from: location.pathname }} replace />
   );
