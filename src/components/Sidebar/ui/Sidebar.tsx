@@ -5,9 +5,10 @@ import { ListItems } from "../../ListItem";
 
 interface SidebarProps {
   drawerWidth: number;
+  drawerWidthXs: number;
 }
 
-export const Sidebar = ({ drawerWidth }: SidebarProps) => {
+export const Sidebar = ({ drawerWidth, drawerWidthXs }: SidebarProps) => {
   const drawer = (
     <div>
       <AuthStatus />
@@ -21,8 +22,11 @@ export const Sidebar = ({ drawerWidth }: SidebarProps) => {
       <Drawer
         variant="permanent"
         sx={{
-          display: { xs: "none", sm: "block" },
-          "& .MuiDrawer-paper": { boxSizing: "border-box", width: drawerWidth },
+          display: { xs: "block", sm: "block" },
+          "& .MuiDrawer-paper": {
+            boxSizing: "border-box",
+            width: { xs: drawerWidthXs, sm: drawerWidth },
+          },
         }}
         open
       >

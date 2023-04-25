@@ -6,30 +6,32 @@ export default defineConfig({
   plugins: [
     react(),
     VitePWA({
-      registerType: "autoUpdate",
-      outDir: "dist",
+      registerType: "prompt",
+      includeAssets: ["favicon.ico", "apple-touch-icon.png", "masked-icon.png"],
       manifest: {
         name: "Notes React PWA",
         short_name: "NotesPWA",
-        description: "description",
-        start_url: "/index.html",
+        lang: "en",
+        icons: [
+          {
+            src: "icon/android-chrome-192x192.png",
+            type: "image/png",
+            sizes: "192x192",
+            purpose: "monochrome",
+          },
+          {
+            src: "icon/android-chrome-512x512.png",
+            type: "image/png",
+            sizes: "512x512",
+            purpose: "maskable any",
+          },
+        ],
         display: "standalone",
         background_color: "#fff",
         theme_color: "#fff",
         orientation: "portrait-primary",
-        icons: [
-          {
-            src: "icon/android-chrome-192x192.png",
-            size: "192x192",
-            type: "image/png",
-            purpose: "maskable any",
-          },
-          {
-            src: "icon/android-chrome-512x512.png",
-            size: "512x512",
-            type: "image/png",
-          },
-        ],
+        scope: "/",
+        start_url: ".",
       },
     }),
   ],

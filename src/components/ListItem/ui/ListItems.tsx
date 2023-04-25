@@ -11,13 +11,8 @@ export const ListItems = () => {
     <List>
       {notesContext?.notesList.map((note) => (
         <ListItem key={note.id} disablePadding>
-          <ListItemButton
-            onClick={() => currentNote && currentNote.setCurrentNoteId(note.id)}
-          >
-            <ListItemText
-              primary={note.title}
-              secondary={<>{cutString(note.body, 50)}</>}
-            />
+          <ListItemButton onClick={() => currentNote && currentNote.setCurrentNoteId(note.id)}>
+            <ListItemText primary={note.title} secondary={<>{cutString(note.body, 30)}</>} />
           </ListItemButton>
         </ListItem>
       ))}
