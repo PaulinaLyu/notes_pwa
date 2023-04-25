@@ -12,7 +12,6 @@ export const WorkspaceForm = ({ data }: WorkspaceProps) => {
   const notesListContext = useNotesList();
   const [titleVal, setTitleVal] = useState("");
   const [bodyVal, setBodyVal] = useState("");
-
   useDebounce(
     () => {
       notesListContext?.changeNote("title", titleVal, data.id);
@@ -32,7 +31,7 @@ export const WorkspaceForm = ({ data }: WorkspaceProps) => {
   useEffect(() => {
     setTitleVal(data.title);
     setBodyVal(data.body);
-  }, []);
+  }, [data]);
 
   return (
     <Stack sx={{ width: "100%", mt: 3 }} spacing={2}>

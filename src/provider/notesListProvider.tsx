@@ -44,11 +44,9 @@ export function NotesListProvider({ children }: NoteProviderProps) {
   const deleteNote = (id: number) => {
     const filteredNotes = notesList.filter((item) => item.id !== id);
     setNotesList(filteredNotes);
-    debugger;
+
     if (currentNote?.currentNoteId === id) {
-      debugger;
       currentNote.setCurrentNoteId(0);
-      debugger;
     }
   };
 
