@@ -1,6 +1,7 @@
 import { useNote } from "../../../provider/noteProvider";
 import { List, ListItem, ListItemButton, ListItemText } from "@mui/material";
 import { useNotesList } from "../../../provider/notesListProvider";
+import { cutString } from "../../../utils/cutStr";
 
 export const ListItems = () => {
   const notesContext = useNotesList();
@@ -13,7 +14,10 @@ export const ListItems = () => {
           <ListItemButton
             onClick={() => currentNote && currentNote.setCurrentNoteId(note.id)}
           >
-            <ListItemText primary={note.title} secondary={<>{note.body}</>} />
+            <ListItemText
+              primary={note.title}
+              secondary={<>{cutString(note.body, 50)}</>}
+            />
           </ListItemButton>
         </ListItem>
       ))}
