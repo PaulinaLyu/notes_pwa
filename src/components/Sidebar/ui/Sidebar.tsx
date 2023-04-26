@@ -1,7 +1,7 @@
 import { Drawer } from "@mui/material";
-import { AuthStatus } from "../../AuthStatus";
-import { SearchBox } from "../../SearchBox";
-import { ListItems } from "../../ListItem";
+import { AuthStatus } from "@/components/AuthStatus";
+import { SearchBox } from "@/components/SearchBox";
+import { ListItems } from "@/components/ListItem";
 
 interface SidebarProps {
   drawerWidth: number;

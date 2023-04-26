@@ -1,7 +1,6 @@
 import { Suspense } from "react";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
-import { useAuth } from "../provider/authProvider";
-import { Sidebar } from "../components/Sidebar";
+import { useAuth } from "@/provider/authProvider";
 
 const PrivateOutlet = () => {
   const auth = useAuth();

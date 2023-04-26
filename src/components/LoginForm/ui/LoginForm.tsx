@@ -9,11 +9,11 @@ import {
   Typography,
 } from "@mui/material";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useAuth } from "../../../provider/authProvider";
+import { useAuth } from "@/provider/authProvider";
 import { VisibilityOff } from "@mui/icons-material";
 import { Visibility } from "@mui/icons-material";
 import "./loginForm.scss";
-import { users } from "../../../data/users";
+import { users } from "@/data/users";
 
 interface LoginFormProps {
   setIsLogin: (val: boolean) => void;

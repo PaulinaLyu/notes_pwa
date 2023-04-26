@@ -1,11 +1,11 @@
 import { Stack, Typography, Button } from "@mui/material";
-import { useNote } from "../../../provider/noteProvider";
+import { useNote } from "@/provider/noteProvider";
 import { useEffect, useState } from "react";
-import { notes } from "../../../data/notes";
-import { NoteInterface } from "../../../data/dataTypes";
-import { ConfirmModal } from "../../ConfirmModal";
+import { notes } from "@/data/notes";
+import { NoteInterface } from "@/data/dataTypes";
+import { ConfirmModal } from "@/components/ConfirmModal";
 import { WorkspaceForm } from "./WorkspaceForm";
-import { useNotesList } from "../../../provider/notesListProvider";
+import { useNotesList } from "@/provider/notesListProvider";
 
 export const Workspace = () => {
   const notesContext = useNote();
@@ -16,9 +16,7 @@ export const Workspace = () => {
 
   useEffect(() => {
     if (notesContext) {
-      const filteredNote = notes.filter(
-        (item) => item.id === notesContext?.currentNoteId
-      )[0];
+      const filteredNote = notes.filter((item) => item.id === notesContext?.currentNoteId)[0];
       setData(filteredNote);
     }
   }, [notesContext?.currentNoteId]);

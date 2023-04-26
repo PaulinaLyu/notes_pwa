@@ -6,7 +6,7 @@ interface NoteContextProps {
 }
 
 interface NoteProviderProps {
-  children: ReactElement[];
+  children: ReactElement;
 }
 
 const NoteContext = createContext<NoteContextProps | null>(null);

@@ -1,8 +1,8 @@
 import { Stack, TextField } from "@mui/material";
-import { NoteInterface } from "../../../data/dataTypes";
-import { useDebounce } from "../../../hooks/useDebounce";
+import { NoteInterface } from "@/data/dataTypes";
+import { useDebounce } from "@/hooks/useDebounce";
 import { useEffect, useState } from "react";
-import { useNotesList } from "../../../provider/notesListProvider";
+import { useNotesList } from "@/provider/notesListProvider";
 
 interface WorkspaceProps {
   data: NoteInterface;

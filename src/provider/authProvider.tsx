@@ -1,5 +1,6 @@
-import { createContext, useContext, ReactNode } from "react";
-import { useLocalStorage } from "../hooks/useLocalStorage";
+import { createContext, useContext, ReactElement } from "react";
+import { useLocalStorage } from "@/hooks/useLocalStorage";
+
 type TypeSignIn = (newUser: string, callBack: () => void) => void;
 type TypeSignOut = (callBack: () => void) => void;
 
@@ -9,7 +10,7 @@ interface AuthContextProps {
   signOut: TypeSignOut;
 }
 interface AuthProviderProps {
-  children: ReactNode;
+  children: ReactElement;
 }
 
 const AuthContext = createContext<AuthContextProps | null>(null);

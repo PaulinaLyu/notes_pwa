@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
-import { Sidebar } from "../../../components/Sidebar";
-import { Workspace } from "../../../components/Workspace";
+import { Sidebar } from "@/components/Sidebar";
+import { Workspace } from "@/components/Workspace";
 
 const drawerWidth = 300;
 

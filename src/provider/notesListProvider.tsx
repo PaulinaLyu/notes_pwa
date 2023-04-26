@@ -1,21 +1,17 @@
-import { createContext, useContext, ReactNode, useState } from "react";
-import { NoteInterface } from "../data/dataTypes";
-import { notes } from "../data/notes";
+import { createContext, useContext, useState, ReactElement } from "react";
+import { NoteInterface } from "@/data/dataTypes";
+import { notes } from "@/data/notes";
 import { useNote } from "./noteProvider";
 
 interface NotesListContextProps {
   notesList: NoteInterface[];
   deleteNote: (id: number) => void;
   setSearchNotes: (value: string) => void;
-  changeNote: (
-    inputName: keyof NoteInterface,
-    value: string,
-    noteId: number
-  ) => void;
+  changeNote: (inputName: keyof NoteInterface, value: string, noteId: number) => void;
 }
 
 interface NoteProviderProps {
-  children: ReactNode;
+  children: ReactElement;
 }
 
 const NotesListContext = createContext<NotesListContextProps | null>(null);
@@ -28,11 +24,7 @@ export function NotesListProvider({ children }: NoteProviderProps) {
   const currentNote = useNote();
   const [notesList, setNotesList] = useState<NoteInterface[]>(notes);
 
-  const changeNote = (
-    inputName: keyof NoteInterface,
-    value: string,
-    noteId: number
-  ) => {
+  const changeNote = (inputName: keyof NoteInterface, value: string, noteId: number) => {
     let findNote: any = notesList.find((item) => item.id === noteId);
     if (findNote) {
       findNote[inputName] = value;
@@ -51,9 +43,7 @@ export function NotesListProvider({ children }: NoteProviderProps) {
   };
 
   const setSearchNotes = (value: string) => {
-    const filteredNotes = notesList.filter((item) =>
-      item.title.includes(value)
-    );
+    const filteredNotes = notesList.filter((item) => item.title.includes(value));
     setNotesList(filteredNotes);
     if (value.length === 0) {
       setNotesList(notes);
@@ -67,9 +57,5 @@ export function NotesListProvider({ children }: NoteProviderProps) {
     changeNote,
   };
 
-  return (
-    <NotesListContext.Provider value={value}>
-      {children}
-    </NotesListContext.Provider>
-  );
+  return <NotesListContext.Provider value={value}>{children}</NotesListContext.Provider>;
 }

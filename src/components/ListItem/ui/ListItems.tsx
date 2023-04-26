@@ -1,7 +1,7 @@
-import { useNote } from "../../../provider/noteProvider";
+import { useNote } from "@/provider/noteProvider";
 import { List, ListItem, ListItemButton, ListItemText } from "@mui/material";
-import { useNotesList } from "../../../provider/notesListProvider";
-import { cutString } from "../../../utils/cutStr";
+import { useNotesList } from "@/provider/notesListProvider";
+import { cutString } from "@/utils/cutStr";
 
 export const ListItems = () => {
   const notesContext = useNotesList();

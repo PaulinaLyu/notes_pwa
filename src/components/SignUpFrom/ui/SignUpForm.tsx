@@ -1,10 +1,4 @@
-import {
-  useRef,
-  MutableRefObject,
-  FormEventHandler,
-  ChangeEventHandler,
-  useState,
-} from "react";
+import { useRef, MutableRefObject, FormEventHandler, ChangeEventHandler, useState } from "react";
 import {
   Alert,
   Button,
@@ -15,8 +9,8 @@ import {
   Typography,
 } from "@mui/material";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useAuth } from "../../../provider/authProvider";
-import { users } from "../../../data/users";
+import { useAuth } from "@/provider/authProvider";
+import { users } from "@/data/users";
 import { VisibilityOff } from "@mui/icons-material";
 import { Visibility } from "@mui/icons-material";
 
@@ -45,21 +39,16 @@ export const SignUpForm = ({ setIsLogin }: SignUpFormProps) => {
   const formRef = useRef() as MutableRefObject<HTMLFormElement>;
   const signUpInputs = useRef(initialState);
 
-  const handleClickShowPasswordRepeat = () =>
-    setShowPasswordRepeat((show) => !show);
+  const handleClickShowPasswordRepeat = () => setShowPasswordRepeat((show) => !show);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
-  const handleMouseDownPassword = (
-    event: React.MouseEvent<HTMLButtonElement>
-  ) => {
+  const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
   };
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
-    const currentUser = users.filter(
-      (user) => user.login === signUpInputs.current.login
-    );
+    const currentUser = users.filter((user) => user.login === signUpInputs.current.login);
     if (
       signUpInputs.current.password &&
       signUpInputs.current.repeatPass &&
@@ -92,10 +81,7 @@ export const SignUpForm = ({ setIsLogin }: SignUpFormProps) => {
       ...signUpInputs.current,
       [event.target.name]: event.target.value,
     };
-    if (
-      event.target.name === "password" ||
-      event.target.name === "passwordRepeat"
-    ) {
+    if (event.target.name === "password" || event.target.name === "passwordRepeat") {
       validatePass();
     }
   };
