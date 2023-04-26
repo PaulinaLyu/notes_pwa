@@ -1,6 +1,7 @@
 import { lazy } from "react";
 import { Route, Routes } from "react-router-dom";
 import PrivateOutlet from "./layout/PrivateLayout";
+import { NotePage } from "./pages/NotePage";
 
 const LoginPage = lazy(() =>
   import("./pages/LoginPage/ui/LoginPage").then((module) => ({
@@ -10,11 +11,6 @@ const LoginPage = lazy(() =>
 const NotFoundPage = lazy(() =>
   import("./pages/NotFoundPage/ui/NotFoundPage").then((module) => ({
     default: module.NotFoundPage,
-  }))
-);
-const NotePage = lazy(() =>
-  import("./pages/NotePage/ui/NotePage").then((module) => ({
-    default: module.NotePage,
   }))
 );
 

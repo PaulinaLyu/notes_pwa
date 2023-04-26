@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { LoginForm } from "../../../components/LoginForm";
+import { LoginForm } from "@/components/LoginForm";
 import "./loginPage.scss";
-import { SignUpForm } from "../../../components/SignUpFrom";
+import { SignUpForm } from "@/components/SignUpFrom";
 
 export const LoginPage = () => {
   const [isLogin, setIsLogin] = useState(true);

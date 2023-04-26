@@ -1,4 +1,4 @@
-import { createContext, useContext, ReactNode, useState } from "react";
+import { createContext, useContext, useState, ReactElement } from "react";
 
 interface NoteContextProps {
   currentNoteId: number;
@@ -6,7 +6,7 @@ interface NoteContextProps {
 }
 
 interface NoteProviderProps {
-  children: ReactNode;
+  children: ReactElement[];
 }
 
 const NoteContext = createContext<NoteContextProps | null>(null);

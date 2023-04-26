@@ -1,9 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 
-type ReturnValue<T> = [
-  T,
-  { setItem: (value: T) => void; removeItem: () => void }
-];
+type ReturnValue<T> = [T, { setItem: (value: T) => void; removeItem: () => void }];
 
 const getStorageValue = <T,>(key: string, initialValue: T): T => {
   try {
@@ -15,13 +12,8 @@ const getStorageValue = <T,>(key: string, initialValue: T): T => {
   }
 };
 
-export function useLocalStorage<T>(
-  key: string,
-  initialValue: T
-): ReturnValue<T> {
-  const [state, setState] = useState<T>(() =>
-    getStorageValue<T>(key, initialValue)
-  );
+export function useLocalStorage<T>(key: string, initialValue: T): ReturnValue<T> {
+  const [state, setState] = useState<T>(() => getStorageValue<T>(key, initialValue));
 
   useEffect(() => {
     try {
